@@ -1,5 +1,6 @@
 import { globalStyles } from '@component/styles/global'
 import type { AppProps } from 'next/app'
+import 'remixicon/fonts/remixicon.css'
 
 globalStyles()
 
