@@ -1,3 +1,5 @@
+import { Header } from '@component/components/Header'
+
 export default function Home() {
-  return <div>Hello NúVA!</div>
+  return <Header></Header>
 }
