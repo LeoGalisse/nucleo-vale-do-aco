@@ -1,7 +1,7 @@
 import { styled } from '@component/styles'
 
 export const FooterContainer = styled('div', {
-  width: '100vw',
+  width: '100%',
 })
 
 export const FooterContent = styled('div', {
