@@ -1,5 +1,9 @@
-import { Header } from '@component/components/Header'
+import { Footer } from '@component/components/Footer'
 
 export default function Home() {
-  return <Header></Header>
+  return (
+    <>
+      <Footer></Footer>
+    </>
+  )
 }
