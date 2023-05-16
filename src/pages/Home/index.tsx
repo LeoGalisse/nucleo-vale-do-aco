@@ -4,9 +4,6 @@ import {
   GoodCompanyContentItems,
   GoodCompanySection,
   GoodCompanyTitle,
-  HeroImage,
-  HeroSection,
-  HeroTitle,
   HomeContainer,
   MejLink,
   MejCircle,
@@ -20,25 +17,19 @@ import {
   SupportLogos,
   SupportLogoItems,
 } from './styles'
-import heroImage from '../../assets/time-nuva.png'
+
 import circle from '../../assets/circle.svg'
 import brasilNuva from '../../assets/brasil-nuva.svg'
 import fejemg from '../../assets/logo-fejemg.svg'
 import unifei from '../../assets/logo-unifei.svg'
 import bj from '../../assets/logo-bj.svg'
 import Image from 'next/image'
+import { Hero } from './components/HeroSection'
 
 export default function Home() {
   return (
     <HomeContainer>
-      <HeroSection>
-        <HeroImage src={heroImage} alt="EJS do Núcleo NúVA" quality={100} />
-        <HeroTitle>
-          <span>
-            Juntos, <p>mineramos</p> a mudança!
-          </span>
-        </HeroTitle>
-      </HeroSection>
+      <Hero />
       <GoodCompanySection>
         <GoodCompanyTitle>
           <span>Você está em boa companhia!</span>
