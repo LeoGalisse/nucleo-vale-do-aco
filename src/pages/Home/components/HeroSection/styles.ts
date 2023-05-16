@@ -6,60 +6,72 @@ export const HeroSection = styled('div', {
   flexDirection: 'column',
   alignItems: 'center',
 
-  height: 680,
+  position: 'relative',
+  height: '100vh',
+  width: '100vw',
+
+  '@media (max-width: 660px)': {
+    height: '85vh',
+  },
 })
 
-export const HeroImage = styled(Image, {})
+export const HeroImage = styled(Image, {
+  objectFit: 'cover',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  maxWidth: 1120,
+
+  '@media (max-width: 660px)': {
+    maxHeight: 354,
+  },
+})
 
 export const HeroTitle = styled('div', {
+  position: 'relative',
   display: 'flex',
-  width: 'fit-content',
-  height: 'fit-content',
   backgroundColor: '$brown500',
+  alignSelf: 'flex-start',
+  marginLeft: '5%',
+  transform: 'translateY(150%)',
+
+  fontSize: '$3xl',
+  lineHeight: '$2xl',
+  fontWeight: '$bold',
+  color: '$white',
+
+  padding: '12px 24px',
   borderRadius: 25,
 
-  transform: 'translateY(-220px) translateX(-300px)',
+  p: {
+    color: '$brown950',
+  },
 
-  span: {
+  '@media (min-width: 660px)': {
     fontSize: '$6xl',
+    lineHeight: '$4xl',
+    transform: 'translateY(125%)',
+
+    backgroundColor: 'rgba(183, 89, 25, 0.8)',
+  },
+
+  '@media (min-height: 520px)': {
+    backgroundColor: '$brown500',
+    transform: 'translateY(0)',
+    marginTop: '60vh',
+  },
+
+  '@media (min-height: 520px) and (max-width: 660px)': {
+    backgroundColor: '$brown500',
+    marginTop: 0,
+    transform: 'translateY(125%)',
+  },
+
+  '@media (max-height: 450px)': {
+    transform: 'translateY(0)',
+    marginTop: '50vh',
+    fontSize: '$2xl',
+    lineHeight: '$xl',
     fontWeight: '$bold',
-    lineHeight: '$5xl',
     color: '$white',
-
-    padding: '12px 24px',
-
-    p: {
-      color: '$brown950',
-    },
-  },
-
-  '@media (min-height: 690px)': {
-    transform: 'translateY(-120px) translateX(calc(80vw - 100vw))',
-  },
-
-  '@media (max-width: 1030px)': {
-    transform: 'translateY(-220px) translateX(calc(750px - 100vw))',
-  },
-
-  '@media (max-width: 960px)': {
-    transform: 'translateY(-220px) translateX(-220px)',
-  },
-
-  '@media (max-width: 860px)': {
-    transform: 'translateY(-220px) translateX(calc(630px - 100vw))',
-  },
-
-  '@media (max-width: 640px)': {
-    transform: 'translateY(-150px) translateX(calc(480px - 100vw))',
-
-    span: {
-      fontSize: '$3xl',
-      lineHeight: '$2xl',
-    },
-  },
-
-  '@media (max-width: 600px)': {
-    transform: 'translateY(-150px) ',
-    marginRight: 40,
   },
 })
