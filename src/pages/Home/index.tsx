@@ -1,9 +1,4 @@
 import {
-  GoodCompanyCircles,
-  GoodCompanyContent,
-  GoodCompanyContentItems,
-  GoodCompanySection,
-  GoodCompanyTitle,
   HomeContainer,
   MejLink,
   MejCircle,
@@ -18,54 +13,19 @@ import {
   SupportLogoItems,
 } from './styles'
 
-import circle from '../../assets/circle.svg'
 import brasilNuva from '../../assets/brasil-nuva.svg'
 import fejemg from '../../assets/logo-fejemg.svg'
 import unifei from '../../assets/logo-unifei.svg'
 import bj from '../../assets/logo-bj.svg'
 import Image from 'next/image'
 import { Hero } from './components/HeroSection'
+import { GoodCompany } from './components/GoodCompanySection'
 
 export default function Home() {
   return (
     <HomeContainer>
       <Hero />
-      <GoodCompanySection>
-        <GoodCompanyTitle>
-          <span>Você está em boa companhia!</span>
-        </GoodCompanyTitle>
-
-        <GoodCompanyContent>
-          <GoodCompanyContentItems>
-            <span>17</span>
-            <span>Empresas Juniores</span>
-            <GoodCompanyCircles>
-              <Image src={circle} alt="Círculo" quality={100} />
-            </GoodCompanyCircles>
-          </GoodCompanyContentItems>
-          <GoodCompanyContentItems>
-            <span>161</span>
-            <span>Empresários Juniores</span>
-            <GoodCompanyCircles>
-              <Image src={circle} alt="Círculo" quality={100} />
-            </GoodCompanyCircles>
-          </GoodCompanyContentItems>
-          <GoodCompanyContentItems>
-            <span>5</span>
-            <span>Instituições de Ensino Superior</span>
-            <GoodCompanyCircles>
-              <Image src={circle} alt="Círculo" quality={100} />
-            </GoodCompanyCircles>
-          </GoodCompanyContentItems>
-          <GoodCompanyContentItems>
-            <span>3</span>
-            <span>Cidades</span>
-            <GoodCompanyCircles>
-              <Image src={circle} alt="Círculo" quality={100} />
-            </GoodCompanyCircles>
-          </GoodCompanyContentItems>
-        </GoodCompanyContent>
-      </GoodCompanySection>
+      <GoodCompany />
       <MejSection>
         <MejCircle />
         <MejInfo>
