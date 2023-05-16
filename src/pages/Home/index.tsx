@@ -14,10 +14,18 @@ import {
   MejImage,
   MejInfo,
   MejSection,
+  SupportSection,
+  SupportCircle,
+  SupportTitle,
+  SupportLogos,
+  SupportLogoItems,
 } from './styles'
 import heroImage from '../../assets/time-nuva.png'
 import circle from '../../assets/circle.svg'
 import brasilNuva from '../../assets/brasil-nuva.svg'
+import fejemg from '../../assets/logo-fejemg.svg'
+import unifei from '../../assets/logo-unifei.svg'
+import bj from '../../assets/logo-bj.svg'
 import Image from 'next/image'
 
 export default function Home() {
@@ -68,7 +76,7 @@ export default function Home() {
         </GoodCompanyContent>
       </GoodCompanySection>
       <MejSection>
-        <MejCircle></MejCircle>
+        <MejCircle />
         <MejInfo>
           <MejContent>
             <span>
@@ -100,6 +108,39 @@ export default function Home() {
           </MejImage>
         </MejInfo>
       </MejSection>
+      <SupportSection>
+        <SupportCircle />
+        <SupportTitle>Quem nos apoia</SupportTitle>
+        <SupportLogos>
+          <SupportLogoItems>
+            <Image
+              src={fejemg}
+              alt="Logo da FEJEMG"
+              quality={50}
+              fill
+              sizes="(max-width: 768px) 50vw, 33vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </SupportLogoItems>
+          <SupportLogoItems>
+            <Image
+              src={unifei}
+              alt="Logo da UNIFEI"
+              quality={50}
+              fill
+              sizes="(max-width: 768px) 50vw, 33vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </SupportLogoItems>
+          <SupportLogoItems>
+            <Image
+              src={bj}
+              alt="Logo da BJ"
+              quality={50}
+              fill
+              sizes="(max-width: 768px) 50vw, 33vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </SupportLogoItems>
+        </SupportLogos>
+      </SupportSection>
     </HomeContainer>
   )
 }
