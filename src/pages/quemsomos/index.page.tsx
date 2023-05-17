@@ -5,6 +5,7 @@ import {
   QuemSomosTitle,
 } from './styles'
 import minasGerais from '../../assets/minas-gerais.svg'
+import { AboutSection } from './components/AboutSection'
 
 export default function QuemSomos() {
   return (
@@ -19,6 +20,7 @@ export default function QuemSomos() {
           alt="Mapa de Minas Gerais destacando o vale do aço"
         />
       </QuemSomosContent>
+      <AboutSection />
     </QuemSomosContainer>
   )
 }
