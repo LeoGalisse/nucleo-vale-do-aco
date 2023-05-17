@@ -42,6 +42,19 @@ export const FaleConoscoForm = styled('form', {
   width: '100%',
 })
 
+export const FaleConoscoFormItem = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  gap: 4,
+})
+
+export const FaleConoscotFormItemLabel = styled('label', {
+  fontSize: '$lg',
+  fontWeight: '$medium',
+  color: '$white',
+})
+
 export const FaleConoscoInput = styled('input', {
   all: 'unset',
   padding: '12px 20px',
@@ -98,4 +111,16 @@ export const FaleConoscoFormButton = styled('button', {
   '&:focus': {
     boxShadow: '0 0 0 2px $colors$brown100',
   },
+
+  '&:disabled': {
+    backgroundColor: '$gray',
+    opacity: 0.7,
+    cursor: 'not-allowed',
+  },
+})
+
+export const FaleConoscoFormError = styled('span', {
+  fontSize: '$sm',
+  fontWeight: '$medium',
+  color: '$brown950',
 })

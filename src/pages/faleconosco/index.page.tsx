@@ -1,41 +1,137 @@
+import { z } from 'zod'
 import {
   FaleConoscoContainer,
   FaleConoscoForm,
   FaleConoscoFormButton,
   FaleConoscoFormContainer,
+  FaleConoscoFormError,
+  FaleConoscoFormItem,
   FaleConoscoInput,
   FaleConoscoTextArea,
   FaleConoscoTitle,
+  FaleConoscotFormItemLabel,
 } from './styles'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const confirmFormSchema = z.object({
+  name: z
+    .string()
+    .min(3, { message: 'O nome deve ter no mínimo 3 caracteres' })
+    .regex(/^([a-záàâãéèêíïóôõöúçñ ]+)$/i, {
+      message: 'O nome deve conter apenas letras e espaços',
+    }),
+  email: z.string().email({ message: 'O e-mail deve ser válido' }),
+  phone: z
+    .string()
+    .min(10, { message: 'O telefone deve ter no mínimo 10 dígitos' }),
+  subject: z
+    .string()
+    .min(3, { message: 'O assunto deve ter no mínimo 3 caracteres' }),
+  message: z
+    .string()
+    .min(10, { message: 'A mensagem deve ter no mínimo 10 caracteres' }),
+})
+
+type ContactFormData = z.infer<typeof confirmFormSchema>
 
 export default function FaleConosco() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(confirmFormSchema),
+  })
+
+  function handleContactSubmission(data: ContactFormData) {
+    console.log(data)
+  }
+
   return (
     <FaleConoscoContainer>
       <FaleConoscoTitle>Entre em contato conosco</FaleConoscoTitle>
       <FaleConoscoFormContainer>
-        <FaleConoscoForm>
-          <FaleConoscoInput type="text" placeholder="Seu nome" required />
-          <FaleConoscoInput type="email" placeholder="Seu e-mail" required />
-          <FaleConoscoInput type="text" placeholder="Seu telefone" required />
-          <FaleConoscoInput
-            list="assunto"
-            placeholder="Escolha um assunto"
-            required
-          />
-          <datalist id="assunto">
-            <option value="Eventos" />
-            <option value="Dúvidas Gerais" />
-            <option value="Feedbacks e Sugestões" />
-            <option value="Fundação ou Filiação de EJ" />
-            <option value="Ignição" />
-            <option value="Imprensa" />
-            <option value="Institucional" />
-            <option value="Parceria" />
-            <option value="Selo EJ" />
-            <option value="Outros" />
-          </datalist>
-          <FaleConoscoTextArea placeholder="Escreva sua mensagem" required />
-          <FaleConoscoFormButton type="submit">Enviar</FaleConoscoFormButton>
+        <FaleConoscoForm onSubmit={handleSubmit(handleContactSubmission)}>
+          <FaleConoscoFormItem>
+            <FaleConoscotFormItemLabel>Nome completo</FaleConoscotFormItemLabel>
+            <FaleConoscoInput
+              placeholder="Seu nome"
+              required
+              {...register('name')}
+            />
+            {errors.name && (
+              <FaleConoscoFormError>{errors.name.message}</FaleConoscoFormError>
+            )}
+          </FaleConoscoFormItem>
+          <FaleConoscoFormItem>
+            <FaleConoscotFormItemLabel>E-mail</FaleConoscotFormItemLabel>
+            <FaleConoscoInput
+              placeholder="Seu e-mail"
+              required
+              {...register('email')}
+            />
+            {errors.email && (
+              <FaleConoscoFormError>
+                {errors.email.message}
+              </FaleConoscoFormError>
+            )}
+          </FaleConoscoFormItem>
+          <FaleConoscoFormItem>
+            <FaleConoscotFormItemLabel>Telefone</FaleConoscotFormItemLabel>
+            <FaleConoscoInput
+              placeholder="Seu telefone"
+              required
+              {...register('phone')}
+            />
+            {errors.phone && (
+              <FaleConoscoFormError>
+                {errors.phone.message}
+              </FaleConoscoFormError>
+            )}
+          </FaleConoscoFormItem>
+          <FaleConoscoFormItem>
+            <FaleConoscotFormItemLabel>Assunto</FaleConoscotFormItemLabel>
+            <FaleConoscoInput
+              list="assunto"
+              placeholder="Escolha um assunto"
+              required
+              {...register('subject')}
+            />
+            {errors.subject && (
+              <FaleConoscoFormError>
+                {errors.subject.message}
+              </FaleConoscoFormError>
+            )}
+            <datalist id="assunto">
+              <option value="Eventos" />
+              <option value="Dúvidas Gerais" />
+              <option value="Feedbacks e Sugestões" />
+              <option value="Fundação ou Filiação de EJ" />
+              <option value="Ignição" />
+              <option value="Imprensa" />
+              <option value="Institucional" />
+              <option value="Parceria" />
+              <option value="Selo EJ" />
+              <option value="Outros" />
+            </datalist>
+          </FaleConoscoFormItem>
+          <FaleConoscoFormItem>
+            <FaleConoscotFormItemLabel>Mensagem</FaleConoscotFormItemLabel>
+            <FaleConoscoTextArea
+              placeholder="Escreva sua mensagem"
+              required
+              {...register('message')}
+            />
+            {errors.message && (
+              <FaleConoscoFormError>
+                {errors.message.message}
+              </FaleConoscoFormError>
+            )}
+          </FaleConoscoFormItem>
+          <FaleConoscoFormButton disabled={isSubmitting} type="submit">
+            Enviar
+          </FaleConoscoFormButton>
         </FaleConoscoForm>
       </FaleConoscoFormContainer>
     </FaleConoscoContainer>
