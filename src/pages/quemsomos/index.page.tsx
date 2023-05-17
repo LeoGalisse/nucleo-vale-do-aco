@@ -6,6 +6,7 @@ import {
 } from './styles'
 import minasGerais from '../../assets/minas-gerais.svg'
 import { AboutSection } from './components/AboutSection'
+import { FrentesDeAtuacaoSection } from './components/FrentesDeAtuacaoSection'
 
 export default function QuemSomos() {
   return (
@@ -21,6 +22,7 @@ export default function QuemSomos() {
         />
       </QuemSomosContent>
       <AboutSection />
+      <FrentesDeAtuacaoSection />
     </QuemSomosContainer>
   )
 }
