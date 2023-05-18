@@ -11,7 +11,7 @@ datasource db {
 }
 
 model GoodCompanySection {
-  id                   String @id @default(cuid()) @map("_id") @db.ObjectId
+  id                   String @id @default(auto()) @map("_id") @db.ObjectId
   number_of_ejs        Int
   number_of_employees  Int
   number_of_institutes Int
@@ -21,7 +21,7 @@ model GoodCompanySection {
 }
 
 model FrentesAtuacaoSection {
-  id              String        @id @default(cuid()) @map("_id") @db.ObjectId
+  id              String        @id @default(auto()) @map("_id") @db.ObjectId
   title           String
   description     String[]
   quem_somos      QuemSomosPage @relation(fields: [quemSomosPageId], references: [id])
@@ -31,7 +31,7 @@ model FrentesAtuacaoSection {
 }
 
 model QuemSomosPage {
-  id                    String                  @id @default(cuid()) @map("_id") @db.ObjectId
+  id                    String                  @id @default(auto()) @map("_id") @db.ObjectId
   about_section         String
   FrentesAtuacaoSection FrentesAtuacaoSection[]
 
@@ -39,7 +39,7 @@ model QuemSomosPage {
 }
 
 model EjsSection {
-  id    String @id @default(cuid()) @map("_id") @db.ObjectId
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
   image Bytes
 
   @@map("ejs_section")
