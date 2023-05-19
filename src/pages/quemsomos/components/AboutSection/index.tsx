@@ -19,10 +19,10 @@ export function AboutSection() {
           {about &&
             about.map((item: Array<string>) => {
               return (
-                <>
+                <div key={item.length}>
                   <p>{item}</p>
                   <br />
-                </>
+                </div>
               )
             })}
         </AboutText>
