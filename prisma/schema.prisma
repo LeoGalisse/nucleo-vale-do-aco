@@ -40,6 +40,8 @@ model QuemSomosPage {
 
 model EjsSection {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  url   String
   image Bytes
 
   @@map("ejs_section")
