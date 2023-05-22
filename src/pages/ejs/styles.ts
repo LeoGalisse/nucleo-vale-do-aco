@@ -1,4 +1,5 @@
 import { styled } from '@component/styles'
+import Image from 'next/image'
 
 export const EjsContainer = styled('div', {
   display: 'flex',
@@ -49,10 +50,13 @@ export const EjsContent = styled('div', {
 
 export const EjsItem = styled('div', {
   display: 'flex',
+  minWidth: 200,
   minHeight: 200,
   alignItems: 'center',
   justifyContent: 'center',
   backgroundColor: '$white',
+
+  position: 'relative',
 
   div: {
     position: 'absolute',
@@ -82,4 +86,8 @@ export const EjsItem = styled('div', {
       height: 200,
     },
   },
+})
+
+export const EjsImage = styled(Image, {
+  objectFit: 'scale-down',
 })
