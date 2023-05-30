@@ -4,6 +4,7 @@ export const AboutContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  width: '100%',
 
   backgroundColor: '$brown950',
 })
