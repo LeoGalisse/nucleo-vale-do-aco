@@ -11,6 +11,7 @@ export default async function handler(
 
   const data = await prisma.goodCompanySection.findMany({
     select: {
+      id: true,
       number_of_cities: true,
       number_of_ejs: true,
       number_of_employees: true,

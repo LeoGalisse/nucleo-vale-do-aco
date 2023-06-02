@@ -10,11 +10,12 @@ export default async function handler(
     return res.status(405).end()
   }
 
-  const { about_section } = await prisma.quemSomosPage.findFirstOrThrow({
+  const { about_section, id } = await prisma.quemSomosPage.findFirstOrThrow({
     select: {
+      id: true,
       about_section: true,
     },
   })
 
-  return res.json({ about_section })
+  return res.json({ about_section, id })
 }
