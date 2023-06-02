@@ -3,6 +3,7 @@ import { Title, UpdateContainer } from './styles'
 import { About } from './components/About'
 import { FrentesAtuacao } from './components/FrentesAtuacao'
 import { GoodCompanyUpdate } from './components/GoodCompany'
+import EjsUpdate from './components/Ejs'
 
 export default function Update() {
   return (
@@ -11,6 +12,7 @@ export default function Update() {
       <About />
       <FrentesAtuacao />
       <GoodCompanyUpdate />
+      <EjsUpdate />
     </UpdateContainer>
   )
 }
