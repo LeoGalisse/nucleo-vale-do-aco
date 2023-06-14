@@ -7,8 +7,7 @@ export const UploadImagesContainer = styled('form', {
   alignItems: 'center',
   justifyContent: 'center',
 
-  marginTop: 73,
-  padding: 40,
+  padding: 0,
   gap: 20,
 })
 
