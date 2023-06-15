@@ -7,17 +7,21 @@ import EjsUpdate from './components/Ejs'
 import { GetServerSideProps } from 'next'
 import { parseCookies } from 'nookies'
 import UploadImage from './components/UploadImage/index.page'
+import { NextSeo } from 'next-seo'
 
 export default function Update() {
   return (
-    <UpdateContainer>
-      <Title>Alteração de conteúdo</Title>
-      <About />
-      <FrentesAtuacao />
-      <GoodCompanyUpdate />
-      <EjsUpdate />
-      <UploadImage />
-    </UpdateContainer>
+    <>
+      <NextSeo title="Update | NúVA" noindex />
+      <UpdateContainer>
+        <Title>Alteração de conteúdo</Title>
+        <About />
+        <FrentesAtuacao />
+        <GoodCompanyUpdate />
+        <EjsUpdate />
+        <UploadImage />
+      </UpdateContainer>
+    </>
   )
 }
 

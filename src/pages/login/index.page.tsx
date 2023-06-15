@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { api } from '@component/lib/axios'
 import { useRouter } from 'next/router'
+import { NextSeo } from 'next-seo'
 
 const LoginSchema = z.object({
   email: z.string().email(),
@@ -41,21 +42,24 @@ export default function Login() {
   }
 
   return (
-    <LoginContainer onSubmit={handleSubmit(handleLogin)}>
-      <LoginTitle>Login</LoginTitle>
-      <LoginFormContainer>
-        <div style={{ width: '100%' }}>
-          <LoginFormItemLabel>E-mail</LoginFormItemLabel>
-          <LoginInput {...register('email')} />
-        </div>
-        <div style={{ width: '100%' }}>
-          <LoginFormItemLabel>Password</LoginFormItemLabel>
-          <LoginInput {...register('password')} type="password" />
-        </div>
-        <LoginFormButton type="submit" disabled={isSubmitting}>
-          Acessar
-        </LoginFormButton>
-      </LoginFormContainer>
-    </LoginContainer>
+    <>
+      <NextSeo title="Login | NúVA" noindex />
+      <LoginContainer onSubmit={handleSubmit(handleLogin)}>
+        <LoginTitle>Login</LoginTitle>
+        <LoginFormContainer>
+          <div style={{ width: '100%' }}>
+            <LoginFormItemLabel>E-mail</LoginFormItemLabel>
+            <LoginInput {...register('email')} />
+          </div>
+          <div style={{ width: '100%' }}>
+            <LoginFormItemLabel>Password</LoginFormItemLabel>
+            <LoginInput {...register('password')} type="password" />
+          </div>
+          <LoginFormButton type="submit" disabled={isSubmitting}>
+            Acessar
+          </LoginFormButton>
+        </LoginFormContainer>
+      </LoginContainer>
+    </>
   )
 }
