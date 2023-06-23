@@ -11,6 +11,13 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
+interface ResponseProps {
+  response: {
+    about_section: string
+    id: string
+  }
+}
+
 const AboutFormSchema = z.object({
   about: z
     .string()
@@ -19,7 +26,7 @@ const AboutFormSchema = z.object({
 
 type AboutFormData = z.infer<typeof AboutFormSchema>
 
-export function About() {
+export function About({ response }: ResponseProps) {
   const {
     register,
     handleSubmit,
@@ -31,20 +38,14 @@ export function About() {
   const [aboutText, setAboutText] = useState('')
   const [aboutId, setAboutId] = useState('')
 
-  async function handleAboutRequest() {
-    const response = await api.get('/about')
-
-    setAboutId(response.data.id)
-    setAboutText(response.data.about_section)
-  }
-
   async function handleAboutUpdate(data: AboutFormData) {
     await api.put(`/update/about/${aboutId}`, data)
   }
 
   useEffect(() => {
-    handleAboutRequest()
-  }, [])
+    setAboutId(response.id)
+    setAboutText(response.about_section)
+  }, [response])
 
   return (
     <AboutForm onSubmit={handleSubmit(handleAboutUpdate)}>

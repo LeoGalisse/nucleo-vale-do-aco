@@ -14,6 +14,7 @@ import {
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { NextSeo } from 'next-seo'
+import { GetStaticProps } from 'next'
 
 const confirmFormSchema = z.object({
   name: z
@@ -147,4 +148,10 @@ export default function FaleConosco() {
       </FaleConoscoContainer>
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {},
+  }
 }

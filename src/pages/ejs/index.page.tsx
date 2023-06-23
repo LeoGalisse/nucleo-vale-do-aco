@@ -1,22 +1,18 @@
 import { EjsContainer, EjsContent, EjsImage, EjsItem, EjsTitle } from './styles'
-import { useQuery } from '@tanstack/react-query'
-import { api } from '@component/lib/axios'
 import { NextSeo } from 'next-seo'
+import { GetStaticProps } from 'next'
+import axios from 'axios'
 
 interface ImageProps {
-  id: string
-  image: string
-  title: string
-  url: string
+  ejs: {
+    id: string
+    image: string
+    title: string
+    url: string
+  }[]
 }
 
-export default function Ejs() {
-  const { data: ejs } = useQuery<ImageProps[]>(['ejs'], async () => {
-    const response = await api.get('/ejs')
-
-    return response.data.img
-  })
-
+export default function Ejs({ ejs }: ImageProps) {
   return (
     <>
       <NextSeo
@@ -26,7 +22,7 @@ export default function Ejs() {
       <EjsContainer>
         <EjsTitle>Nossas Empresas Juniores</EjsTitle>
         <EjsContent>
-          {ejs?.map((item) => {
+          {ejs.map((item) => {
             return (
               <EjsItem key={item.id}>
                 <EjsImage
@@ -48,4 +44,15 @@ export default function Ejs() {
       </EjsContainer>
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const response = await axios.get(`${process.env.API_URL}/ejs`)
+
+  return {
+    props: {
+      ejs: response.data.img,
+    },
+    revalidate: 60 * 60 * 2, // 2 hours
+  }
 }

@@ -6,7 +6,16 @@ import { Mej } from './components/MejSection'
 import { Support } from './components/SupportSection'
 import { NextSeo } from 'next-seo'
 
-export default function Home() {
+interface NumbersProps {
+  numbers: {
+    number_of_ejs: number
+    number_of_employees: number
+    number_of_institutes: number
+    number_of_cities: number
+  }
+}
+
+export default function Home({ numbers }: NumbersProps) {
   return (
     <>
       <NextSeo
@@ -15,7 +24,7 @@ export default function Home() {
       />
       <HomeContainer>
         <Hero />
-        <GoodCompany />
+        <GoodCompany numbers={numbers} />
         <Mej />
         <Support />
       </HomeContainer>
