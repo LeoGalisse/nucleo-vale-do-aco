@@ -9,11 +9,15 @@ import { useEffect, useState } from 'react'
 import { Ejs } from './styles'
 import { z } from 'zod'
 
-interface EjsProps {
+export interface EjsProps {
   id: string
   image: string
   title: string
   url: string
+}
+
+interface EjsUpdateProps {
+  response: EjsProps[]
 }
 
 const EjsSchema = z.object({
@@ -22,22 +26,16 @@ const EjsSchema = z.object({
 
 type EjsData = z.infer<typeof EjsSchema>
 
-export default function EjsUpdate() {
+export default function EjsUpdate({ response }: EjsUpdateProps) {
   const [ejs, setEjs] = useState<EjsProps[]>([])
-
-  async function handleEjsRequest() {
-    const response = await api.get('/ejs')
-
-    setEjs(response.data.img)
-  }
 
   async function handleEjsUpdate(data: EjsData) {
     await api.delete(`/update/ejs/${data.id}`)
   }
 
   useEffect(() => {
-    handleEjsRequest()
-  }, [])
+    setEjs(response)
+  }, [response])
 
   return (
     <Ejs>

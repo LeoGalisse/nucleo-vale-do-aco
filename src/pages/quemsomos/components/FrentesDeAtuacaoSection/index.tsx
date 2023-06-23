@@ -1,4 +1,3 @@
-import { api } from '@component/lib/axios'
 import {
   FrentesDeAtuacaoCard,
   FrentesDeAtuacaoCardDescription,
@@ -8,28 +7,22 @@ import {
   FrentesDeAtuacaoContent,
   FrentesDeAtuacaoTitle,
 } from './styles'
-import { useQuery } from '@tanstack/react-query'
 
 interface FrentesDeAtuacaoSectionProps {
-  FrentesAtuacaoSection: [
-    {
-      id: string
-      title: string
-      description: Array<string>
-    },
-  ]
+  frentesDeAtuacao: {
+    FrentesAtuacaoSection: [
+      {
+        id: string
+        title: string
+        description: Array<string>
+      },
+    ]
+  }
 }
 
-export function FrentesDeAtuacaoSection() {
-  const { data: frentesDeAtuacao } = useQuery<FrentesDeAtuacaoSectionProps>(
-    ['frentesDeAtuacao'],
-    async () => {
-      const response = await api.get('/frentes-de-atuacao')
-
-      return response.data
-    },
-  )
-
+export function FrentesDeAtuacaoSection({
+  frentesDeAtuacao,
+}: FrentesDeAtuacaoSectionProps) {
   return (
     <FrentesDeAtuacaoContainer>
       <FrentesDeAtuacaoContent>

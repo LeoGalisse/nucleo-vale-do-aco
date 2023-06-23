@@ -20,9 +20,13 @@ const GoodCompanySchema = z.object({
   number_of_cities: z.number({ coerce: true }),
 })
 
-type GoodCompanyData = z.infer<typeof GoodCompanySchema>
+export type GoodCompanyData = z.infer<typeof GoodCompanySchema>
 
-export function GoodCompanyUpdate() {
+interface GoodCompanyProps {
+  response: GoodCompanyData & { id: string }
+}
+
+export function GoodCompanyUpdate({ response }: GoodCompanyProps) {
   const {
     register,
     handleSubmit,
@@ -39,13 +43,6 @@ export function GoodCompanyUpdate() {
   })
   const [id, setId] = useState<string>()
 
-  async function handleGoodCompanyRequest() {
-    const response = await api.get('/numbers')
-
-    setNumbers(response.data.data[0])
-    setId(response.data.data[0].id)
-  }
-
   async function handleGoodCompanyUpdate(data: GoodCompanyData) {
     data.number_of_cities === 0 &&
       (data.number_of_cities = numbers.number_of_cities)
@@ -59,8 +56,9 @@ export function GoodCompanyUpdate() {
   }
 
   useEffect(() => {
-    handleGoodCompanyRequest()
-  }, [])
+    setNumbers(response)
+    setId(response.id)
+  }, [response])
 
   return (
     <GoodCompany onSubmit={handleSubmit(handleGoodCompanyUpdate)}>

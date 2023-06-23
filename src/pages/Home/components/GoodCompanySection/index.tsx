@@ -7,23 +7,17 @@ import {
 } from './styles'
 import Image from 'next/image'
 import circle from '@component/assets/circle.svg'
-import { useQuery } from '@tanstack/react-query'
-import { api } from '@component/lib/axios'
 
 interface NumbersProps {
-  number_of_ejs: number
-  number_of_employees: number
-  number_of_institutes: number
-  number_of_cities: number
+  numbers: {
+    number_of_ejs: number
+    number_of_employees: number
+    number_of_institutes: number
+    number_of_cities: number
+  }
 }
 
-export function GoodCompany() {
-  const { data: numbers } = useQuery<NumbersProps>(['numbers'], async () => {
-    const response = await api.get('/numbers')
-
-    return response.data.data[0]
-  })
-
+export function GoodCompany({ numbers }: NumbersProps) {
   return (
     <GoodCompanySection>
       <GoodCompanyTitle>

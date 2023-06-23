@@ -12,6 +12,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { api } from '@component/lib/axios'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
+import { GetStaticProps } from 'next'
 
 const LoginSchema = z.object({
   email: z.string().email(),
@@ -62,4 +63,10 @@ export default function Login() {
       </LoginContainer>
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {},
+  }
 }

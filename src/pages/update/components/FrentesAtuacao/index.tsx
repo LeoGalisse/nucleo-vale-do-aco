@@ -29,9 +29,13 @@ const FrentesDeAtuacaoSchema = z.object({
   ),
 })
 
-type FrentesDeAtuacaoData = z.infer<typeof FrentesDeAtuacaoSchema>
+export type FrentesDeAtuacaoData = z.infer<typeof FrentesDeAtuacaoSchema>
 
-export function FrentesAtuacao() {
+interface FrentesAtuacaoProps {
+  response: FrentesDeAtuacaoData & { id: string }
+}
+
+export function FrentesAtuacao({ response }: FrentesAtuacaoProps) {
   const {
     register,
     handleSubmit,
@@ -42,13 +46,6 @@ export function FrentesAtuacao() {
 
   const [frentesAtuacao, setFrentesAtuacao] = useState<FrentesDeAtuacaoData>()
   const [quemSomosId, setQuemSomosId] = useState('')
-
-  async function handleFrentesAtuacaoRequest() {
-    const response = await api.get('/frentes-de-atuacao')
-
-    setFrentesAtuacao(response.data)
-    setQuemSomosId(response.data.id)
-  }
 
   async function handleFrentesAtuacaoUpdate(data: FrentesDeAtuacaoData) {
     const filterData = data.FrentesAtuacaoSection.map((item) => {
@@ -62,8 +59,9 @@ export function FrentesAtuacao() {
   }
 
   useEffect(() => {
-    handleFrentesAtuacaoRequest()
-  }, [])
+    setFrentesAtuacao(response)
+    setQuemSomosId(response.id)
+  }, [response])
 
   return (
     <FrentesAtuacaoForm onSubmit={handleSubmit(handleFrentesAtuacaoUpdate)}>
