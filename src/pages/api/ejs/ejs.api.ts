@@ -4,6 +4,10 @@ import fs from 'fs/promises'
 import { prisma } from '@component/lib/prisma'
 import path from 'path'
 
+interface MyFiles {
+  [key: string]: formidable.File
+}
+
 export const config = {
   api: {
     bodyParser: false,
@@ -42,7 +46,10 @@ const handler: NextApiHandler = async (req, res) => {
 
   const data = await readFile(req, false)
 
-  const image = await fs.readFile(data.files.myImage.filepath)
+  const myFiles: MyFiles = data.files as MyFiles
+  const myImageFile = myFiles.myImage
+  const filePath: string = myImageFile.filepath
+  const image = await fs.readFile(filePath)
 
   await prisma.ejsSection.create({
     data: {
