@@ -15,6 +15,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps } from 'next'
+import { api } from '@component/lib/axios'
 
 const confirmFormSchema = z.object({
   name: z
@@ -30,7 +31,7 @@ const confirmFormSchema = z.object({
   subject: z
     .string()
     .min(3, { message: 'O assunto deve ter no mínimo 3 caracteres' }),
-  message: z
+  text: z
     .string()
     .min(10, { message: 'A mensagem deve ter no mínimo 10 caracteres' }),
 })
@@ -41,13 +42,17 @@ export default function FaleConosco() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormData>({
     resolver: zodResolver(confirmFormSchema),
   })
 
-  function handleContactSubmission(data: ContactFormData) {
+  async function handleContactSubmission(data: ContactFormData) {
     console.log(data)
+    const res = await api.post('/email', data)
+    console.log(res)
+    reset()
   }
 
   return (
@@ -132,11 +137,11 @@ export default function FaleConosco() {
               <FaleConoscoTextArea
                 placeholder="Escreva sua mensagem"
                 required
-                {...register('message')}
+                {...register('text')}
               />
-              {errors.message && (
+              {errors.text && (
                 <FaleConoscoFormError>
-                  {errors.message.message}
+                  {errors.text.message}
                 </FaleConoscoFormError>
               )}
             </FaleConoscoFormItem>
