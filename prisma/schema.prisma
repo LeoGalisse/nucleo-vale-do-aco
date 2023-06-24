@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model GoodCompanySection {
+  id                   String @id @default(auto()) @map("_id") @db.ObjectId
+  number_of_ejs        Int
+  number_of_employees  Int
+  number_of_institutes Int
+  number_of_cities     Int
+
+  @@map("good_company_section")
+}
+
+model FrentesAtuacaoSection {
+  id              String        @id @default(auto()) @map("_id") @db.ObjectId
+  title           String
+  description     String[]
+  quem_somos      QuemSomosPage @relation(fields: [quemSomosPageId], references: [id])
+  quemSomosPageId String        @db.ObjectId
+
+  @@map("frentes_atuacao_section")
+}
+
+model QuemSomosPage {
+  id                    String                  @id @default(auto()) @map("_id") @db.ObjectId
+  about_section         String
+  FrentesAtuacaoSection FrentesAtuacaoSection[]
+
+  @@map("quem_somos_page")
+}
+
+model EjsSection {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  url   String
+  image Bytes
+
+  @@map("ejs_section")
+}
