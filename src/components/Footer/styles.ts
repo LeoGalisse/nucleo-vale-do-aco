@@ -50,6 +50,11 @@ export const FooterTitle = styled('span', {
   color: '$brown950',
 
   marginBottom: 32,
+
+  '&:hover': {
+    textDecoration: 'none !important',
+    cursor: 'default',
+  },
 })
 
 export const FooterNav = styled('div', {

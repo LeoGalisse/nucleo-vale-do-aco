@@ -33,13 +33,38 @@ export function Footer() {
         <FooterWhere>
           <FooterTitle>Onde nos encontrar</FooterTitle>
           <span>
-            Endereço: Rua Irmã Ivone Drumond, 200 - Distrito Industrial II
-            Itabira - MG, 35903-087
+            Endereço:{' '}
+            <a
+              href="https://www.google.com/maps/place/Universidade+Federal+de+Itajub%C3%A1+-+UNIFEI+-+Campus+Theodomiro+Carneiro+Santiago/@-19.6733641,-43.2124748,15z/data=!4m2!3m1!1s0x0:0x492daa791fcc7f52?sa=X&ved=2ahUKEwiZ1O713dr_AhXVr5UCHaNGB5AQ_BJ6BAhiEAg"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Rua Irmã Ivone Drumond, 200 - Distrito Industrial II Itabira - MG,
+              35903-087
+            </a>
           </span>
           <FooterWhereIcons>
-            <i className="ri-instagram-line ri-lg"></i>
-            <i className="ri-linkedin-line ri-lg"></i>
-            <i className="ri-road-map-line ri-lg"></i>
+            <a
+              href="https://www.instagram.com/nucleo.valedoaco/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i className="ri-instagram-line ri-lg"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/company/n%C3%BAcleo-vale-do-a%C3%A7o/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i className="ri-linkedin-line ri-lg"></i>
+            </a>
+            <a
+              href="https://www.google.com/maps/place/Universidade+Federal+de+Itajub%C3%A1+-+UNIFEI+-+Campus+Theodomiro+Carneiro+Santiago/@-19.6733641,-43.2124748,15z/data=!4m2!3m1!1s0x0:0x492daa791fcc7f52?sa=X&ved=2ahUKEwiZ1O713dr_AhXVr5UCHaNGB5AQ_BJ6BAhiEAg"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i className="ri-road-map-line ri-lg"></i>
+            </a>
           </FooterWhereIcons>
         </FooterWhere>
         <FooterLogo>
@@ -66,13 +91,15 @@ export function Footer() {
         <span>COPYRIGHT 2023. ALL RIGHTS RESERVED.</span>
         <FooterCopyrightImage>
           DEVELOPED BY{' '}
-          <Image
-            alt="Logo do Núcleo do Vale do Aço"
-            src="/images/logo-cp2.svg"
-            width={52}
-            height={24}
-            priority={false}
-          />
+          <a href="https://cp2ejr.com.br/" target="_blank" rel="noreferrer">
+            <Image
+              alt="Logo do Núcleo do Vale do Aço"
+              src="/images/logo-cp2.svg"
+              width={52}
+              height={24}
+              priority={false}
+            />
+          </a>
         </FooterCopyrightImage>
       </FooterCopyright>
     </FooterContainer>
