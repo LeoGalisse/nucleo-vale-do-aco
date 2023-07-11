@@ -6,12 +6,13 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model User {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String   @id @default(uuid()) @map("_id")
   email     String   @unique
   password  String
   createdAt DateTime @default(now())
@@ -21,7 +22,7 @@ model User {
 }
 
 model GoodCompanySection {
-  id                   String @id @default(auto()) @map("_id") @db.ObjectId
+  id                   String @id @default(uuid()) @map("_id")
   number_of_ejs        Int
   number_of_employees  Int
   number_of_institutes Int
@@ -31,17 +32,18 @@ model GoodCompanySection {
 }
 
 model FrentesAtuacaoSection {
-  id              String        @id @default(auto()) @map("_id") @db.ObjectId
+  id              String        @id @default(uuid()) @map("_id")
   title           String
   description     String[]
   quem_somos      QuemSomosPage @relation(fields: [quemSomosPageId], references: [id])
-  quemSomosPageId String        @db.ObjectId
+  quemSomosPageId String
 
+  @@index([quemSomosPageId])
   @@map("frentes_atuacao_section")
 }
 
 model QuemSomosPage {
-  id                    String                  @id @default(auto()) @map("_id") @db.ObjectId
+  id                    String                  @id @default(uuid()) @map("_id")
   about_section         String
   FrentesAtuacaoSection FrentesAtuacaoSection[]
 
@@ -49,7 +51,7 @@ model QuemSomosPage {
 }
 
 model EjsSection {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  id    String @id @default(uuid()) @map("_id")
   title String
   url   String
   image Bytes
