@@ -9,6 +9,7 @@ import { AboutSection } from './components/AboutSection'
 import { FrentesDeAtuacaoSection } from './components/FrentesDeAtuacaoSection'
 import { NextSeo } from 'next-seo'
 import { GetStaticProps } from 'next'
+import axios from 'axios'
 
 export default function QuemSomos(props: any) {
   return (
@@ -37,17 +38,17 @@ export default function QuemSomos(props: any) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  /* const responseAbout = await axios.get(`${process.env.API_URL}/about`)
+  const responseAbout = await axios.get(`${process.env.API_URL}/about`)
   const res = responseAbout.data.about_section.split('/')
 
   const responseFrentesDeAtuacao = await axios.get(
     `${process.env.API_URL}/frentes-de-atuacao`,
-  ) */
+  )
 
   return {
     props: {
-      about: null,
-      frentesDeAtuacao: null,
+      about: res,
+      frentesDeAtuacao: responseFrentesDeAtuacao.data,
     },
   }
 }
