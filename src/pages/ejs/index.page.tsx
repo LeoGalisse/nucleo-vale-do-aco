@@ -53,6 +53,5 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: {
       ejs: response.data.img,
     },
-    revalidate: 60 * 60 * 2, // 2 hours
   }
 }

@@ -50,6 +50,5 @@ export const getServerSideProps: GetServerSideProps = async () => {
       about: res,
       frentesDeAtuacao: responseFrentesDeAtuacao.data,
     },
-    revalidate: 60 * 60 * 2, // 2 hours
   }
 }
