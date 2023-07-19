@@ -47,16 +47,16 @@ export default function Ejs({ ejs }: ImageProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  try {
-    const response = await axios.get(`${process.env.API_URL}/ejs`)
+  const response = await axios.get(`${process.env.API_URL}/ejs`)
 
+  if (response) {
     return {
       props: {
         ejs: response.data.img,
       },
       revalidate: 60 * 60 * 2, // 2 hours
     }
-  } catch (error) {
+  } else {
     return {
       props: {
         ejs: [

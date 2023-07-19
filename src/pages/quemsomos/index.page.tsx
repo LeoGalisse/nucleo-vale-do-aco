@@ -38,14 +38,14 @@ export default function QuemSomos(props: any) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  try {
-    const responseAbout = await axios.get(`${process.env.API_URL}/about`)
-    const res = responseAbout.data.about_section.split('/')
+  const responseAbout = await axios.get(`${process.env.API_URL}/about`)
+  const res = responseAbout.data.about_section.split('/')
 
-    const responseFrentesDeAtuacao = await axios.get(
-      `${process.env.API_URL}/frentes-de-atuacao`,
-    )
+  const responseFrentesDeAtuacao = await axios.get(
+    `${process.env.API_URL}/frentes-de-atuacao`,
+  )
 
+  if (res && responseFrentesDeAtuacao.data) {
     return {
       props: {
         about: res,
@@ -53,7 +53,7 @@ export const getStaticProps: GetStaticProps = async () => {
       },
       revalidate: 60 * 60 * 2, // 2 hours
     }
-  } catch (error) {
+  } else {
     return {
       props: {
         about: [
